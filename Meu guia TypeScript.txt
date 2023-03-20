@@ -1,0 +1,434 @@
+instalando o TS
+
+utilizar o NPM
+
+instalar de forma global usando a flag -g
+
+a partyir da instalação tenho como executar/
+compilart em qualquer local usando o comando
+tsc;
+
+npm i -g typescript
+
+
+verificar se o TS foi instalado:
+tsc -v
+
+
+
+
+
+inicializar o tsc --init
+
+
+
+
+
+
+"rootDir": "./src",     // aonde estou desenvolvendo?
+no caso, meu arquivo index.ts está em src/index.ts
+
+
+ "outDir": "./dist/js/ // diretorio de deploy,
+no caso apasta do meu js.
+
+
+utilizar o comando "tsc" para fazer a compilação.
+
+
+
+
+
+
+compilação automática:
+
+
+tsc -w
+
+Qualquer altera~]ao feita no arquivo .ts será
+feita automaticamente no arquivo js.
+
+
+
+
+
+
+como funciona a tipagem?
+
+ao lado da variável, colocar : e o nome do tipo
+por exemplo:
+
+const x: number = 10
+
+
+
+
+
+
+inferencia x annotation 
+
+como defrinir uma variavel com o tipo em inferencia?
+
+let y = 12 // inferencia
+
+let z: number = 12; // annotation
+
+ambos funcionam 
+
+
+
+
+
+tipos básicos
+
+let firstName: string = "Willian"
+let age: number = 30
+const isAdmin: boolean = true
+
+
+array
+
+como definir um array de tipo básico?
+
+const myNumbers: number[] = [1,2,3]
+
+
+
+
+
+
+tuplas => tuple
+
+definir e xatamente como um array vai ser
+
+let myTuple: [number, string, string[]]
+
+mytuple = [5,"teste", ["a", "b"]]
+
+
+
+
+
+
+object literals 
+
+const user: {name: string, age: number} = {
+	name: "Willian",
+	age: 18,
+
+}
+
+
+
+
+
+
+
+
+
+any // Valor que aceita qualquer tipo de dado
+
+let a: any = 0
+
+a = "teste"
+a = 50
+a = true
+
+
+solução para o any // Não sei quantos tipos de dado
+certa variável pode ter.
+
+
+// union type |
+
+
+let id: string | number = "10"
+id = 200
+
+
+// type alias
+
+type myIdType = number | string
+
+const userId: myIdtype = 10
+
+
+
+
+
+
+
+
+Enum
+
+tipo de dado que enumera uma coleção e conseguimos
+utlizar dados mais complexo de maneira mais simples
+
+
+enum Size {
+	p = "pequeno",
+	m = "medio",
+	g = "grande"	
+
+}
+
+
+const camisa = {
+	name: "Polo",
+	size: Size.G
+}
+
+console.log(camisa)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+literal types
+determina um valor como um tipo
+
+
+let teste: "algumvalor
+
+teste = "outrovalor"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Funções
+
+
+
+
+
+parâmetros
+Obrigatório tipagem, ex:
+
+
+function sum(a: number, b: number) {
+	return a + b
+}
+
+
+
+
+
+
+void = tipo de função que não retorna nada
+
+
+function logger(msg: string): void {
+	console.log(msg)
+}
+
+logger("teste")
+
+
+
+
+
+
+
+
+
+
+
+Interfaces
+
+
+
+
+tipar um objeto
+
+interface MathFunctionParams {
+	n1: number,
+	n2: number
+}
+
+function sumNumbers(nums: MathFunctionParams) {
+	return nums.n1 + nums.n2
+}
+
+console.log(sumNumbers({n1:1 , n2:2}))
+
+
+
+function multiplyNumbers(nums: MathFunctionParams) {
+	return nums.n1 * nums.n2
+}
+
+
+
+
+
+também posso tipar uma variavel com isso:
+
+const someNumbers: MathFunctionParams = {
+	n1: 5,
+	n2: 10
+}
+
+console.log(multiplyNumbers(someNumbers));
+
+
+
+
+
+
+
+
+
+generics
+tipo não importa, ex. Array de obj, nums,...:
+
+
+
+function showArraysItens<T>(arr: T[]) {
+	arr.forEach((item) => {
+	console.log(`Item: ${item}`)	
+	})
+}
+
+const a1 = [1,2,3]
+const a2 = ["a", "b", "c"]
+
+showArraysItens(a1)
+showArraysItens(a2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+classes
+
+
+class User {
+	name
+	role
+	isApproved
+
+
+	constructor(name: string, role: string, isApproved: boolean)
+		this.name = name
+		this.role = role
+		this.isApproved = isApproved
+	}
+}
+
+const zeca = new User("Zeca", "Admin", true)
+
+console.log(zeca)
+
+
+
+
+
+
+
+
+
+
+interfaces em classes
+
+
+interface IVehicle {
+	brand: string
+	showBrand(): void 
+}
+
+class Car implements IVehicle {
+	brand
+	wheels
+
+	constructor(brand: stringm wheels: number) {
+	this.brand = brand
+	this.wheels = wheels
+	}
+	
+	showBrand(): void {
+	console.log(`A marca do carro é: ${this.brand}`)
+	}
+
+}
+
+const fusca new Car("w", 4)
+fusca.showBrand()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Herança
+
+
+
+class SuperCar extends Car {
+	engine
+
+	constructor(brand stringm wheels: number, engine: numer) {
+	super(brand, wheels)
+	this.engine = engine
+	}
+}
+
+const a4 = new SuperCar("Audi", 4, 2.0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+decorators
+
+
